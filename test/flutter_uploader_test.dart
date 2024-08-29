@@ -13,8 +13,6 @@ void tmpBackgroundHandler() {}
 
 @GenerateMocks([EventChannel, MethodChannel])
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-
   late FlutterUploader uploader;
 
   const methodChannel = MethodChannel('flutter_uploader');
@@ -30,16 +28,17 @@ void main() {
   final log = <MethodCall>[];
 
   setUp(() {
-    methodChannel.setMockMethodCallHandler((call) async {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(methodChannel, (call) {
       log.add(call);
 
       if (mockResponse != null) {
         final tmp = mockResponse;
         mockResponse = null;
-        return tmp;
+        return Future.value(tmp);
       }
 
-      return;
+      return Future.value();
     });
 
     progressChannel = MockEventChannel();
@@ -93,7 +92,8 @@ void main() {
       );
 
       test('allowCellular has default value of true', () async {
-        methodChannel.setMockMethodCallHandler((call) async {
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(methodChannel, (call) async {
           expect(call.arguments['allowCellular'] as bool?, isTrue);
           return 'allowCellular';
         });

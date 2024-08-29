@@ -1,4 +1,4 @@
-part of flutter_uploader;
+part of '../flutter_uploader.dart';
 
 /// Abstract data structure for storing uploads.
 abstract class Upload {
