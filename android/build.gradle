@@ -23,10 +23,11 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 31
+    namespace 'com.bluechilli.flutteruploader'
 
     defaultConfig {
         minSdkVersion 16
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     compileOptions {
@@ -40,11 +41,11 @@ android {
 }
 
 dependencies {
-    implementation "androidx.work:work-runtime:2.7.1"
-    implementation "androidx.concurrent:concurrent-futures:1.1.0"
-    implementation "androidx.annotation:annotation:1.2.0"
-    implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
-    implementation "androidx.core:core:1.5.0"
-    implementation "com.squareup.okhttp3:okhttp:4.9.0"
-    implementation "com.google.code.gson:gson:2.8.6"
+    implementation 'androidx.work:work-runtime:2.7.1'
+    implementation 'androidx.concurrent:concurrent-futures:1.1.0'
+    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.3.1'
+    implementation 'androidx.core:core:1.5.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
