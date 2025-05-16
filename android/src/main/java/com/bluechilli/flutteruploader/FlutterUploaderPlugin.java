@@ -43,16 +43,6 @@ public class FlutterUploaderPlugin implements FlutterPlugin, StatusListener {
       new CachingStreamHandler<>();
   private LiveData<List<WorkInfo>> workInfoLiveData;
 
-  public static void registerWith(Registrar registrar) {
-    final FlutterUploaderPlugin plugin = new FlutterUploaderPlugin();
-    plugin.startListening(registrar.context(), registrar.messenger());
-    registrar.addViewDestroyListener(
-        view -> {
-          plugin.stopListening();
-          return false;
-        });
-  }
-
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
     startListening(binding.getApplicationContext(), binding.getBinaryMessenger());
